@@ -14,19 +14,15 @@
     }
     </style>
         <meta charset="UTF-8">
-        <title>Entires</title>
-        {% if result %}
-        
-        {% for row in result %}
-        
-        {% endfor %}
-        {% endif %}
+        <title>Entries</title>
     <table id="entries" style="width:100%"><tbody><tr>
             <th>Time</th>
             <th>Status</th>
         </tr><tr>
             {$ if result %}
-                <td> {{ row.time }}</td>
-                <td> {{ row.status }}</td>
+                {% for row in result %}
+                    <td> {{ row.time }}</td>
+                    <td> {{ row.status }}</td>
+                {% endfor %}
             {$ endif $}
         </tr></tbody></table>
