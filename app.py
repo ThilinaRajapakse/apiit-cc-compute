@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 class Database:
     def __init__(self):
-        return
         host = "35.226.208.53"
         user = "root"
         password = "scadmin"
