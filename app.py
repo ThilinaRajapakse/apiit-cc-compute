@@ -42,7 +42,7 @@ db = Database()
 
 @app.route('/')
 def entries():
-    
+    print("Request received")
     return render_template('entries.html', result=db.list_entries(), content_type='application/json')
 
 @app.route('/acquire')
@@ -52,10 +52,5 @@ def acquire():
 
     db.generate_entry(name)
 
-
-
-
-
-
-
-acquire()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='8000')
