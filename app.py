@@ -22,10 +22,7 @@ class Database:
         columns = ', '.join(table_columns)
         sql_query = f"{sql_query}({columns});"
 
-        try:
-            self.cur.execute(sql_query)
-        except:
-            print(sql_query)
+        self.cur.execute(sql_query)
 
     def generate_entry(self, plant):
 
@@ -33,13 +30,10 @@ class Database:
         status = "RUNNING" if random.uniform(0, 1) > 0.25 else "DOWN"
         sql_query = f"INSERT INTO {plant} VALUES ({time}, {status});"
 
-        try:
-            self.cur.execute(sql_query)
-        except:
-            print(sql_query)
+        self.cur.execute(sql_query)
 
     def list_entries(self):
-        self.cur.execute("SELECT entry, time, status FROM plant_1;")
+        self.cur.execute("SELECT entry, time, status FROM plant_1")
         result = self.cur.fetchall()
 
         return result
