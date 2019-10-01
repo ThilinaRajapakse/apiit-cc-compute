@@ -11,7 +11,7 @@ class Database:
         host = "35.226.208.53"
         user = "root"
         password = "scadmin"
-        db = "employees"
+        db = "sc_electronicsDB"
         self.con = pymysql.connect(host=host, user=user, password=password, db=db, cursorclass=pymysql.cursors.
                                    DictCursor)
         self.cur = self.con.cursor()
