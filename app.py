@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import pymysql
 import datetime
 import random
@@ -45,12 +45,14 @@ def entries():
     print("Request received")
     return render_template('entries.html', result=db.list_entries(), content_type='application/json')
 
-@app.route('/acquire')
+@app.route('/acquire', methods=['GET', 'POST'])
 def acquire():
     name = "plant_1"
     db.create_table(name, ["entry INT NOT NULL AUTO_INCREMENT", "time VARCHAR(255)", "status VARCHAR(255)", "PRIMARY KEY (entry)"])
 
     db.generate_entry(name)
+
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='8000')
