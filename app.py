@@ -27,12 +27,12 @@ class Database:
 
         time = str(datetime.datetime.now())
         status = "RUNNING" if random.uniform(0, 1) > 0.25 else "DOWN"
-        sql_query = f"INSERT INTO '{plant}' VALUES ({time}, {status})"
+        sql_query = f"INSERT INTO {plant} VALUES ({time}, {status})"
 
         self.cur.execute(sql_query)
 
     def list_entries(self):
-        self.cur.execute("SELECT 'entry', 'time', 'status' FROM 'plant_1'")
+        self.cur.execute("SELECT * FROM plant_1")
         result = self.cur.fetchall()
 
         return result
