@@ -25,6 +25,8 @@
             <th>Time</th>
             <th>Status</th>
         </tr><tr>
-            <td> {{ row.time }}</td>
-            <td> {{ row.status }}</td>
-    
+            {$ if result %}
+                <td> {{ row.time }}</td>
+                <td> {{ row.status }}</td>
+            {$ endif $}
+        </tr></tbody></table>
