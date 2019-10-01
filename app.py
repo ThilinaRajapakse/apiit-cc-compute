@@ -27,7 +27,7 @@ class Database:
 
         time = str(datetime.datetime.now())
         status = "RUNNING" if random.uniform(0, 1) > 0.25 else "DOWN"
-        sql_query = f"INSERT INTO {plant} ('time'. 'status') VALUES '{time}', '{status}')"
+        sql_query = f"INSERT INTO {plant} (time, status) VALUES ('{time}', '{status}')"
 
         self.cur.execute(sql_query)
 
@@ -39,6 +39,10 @@ class Database:
 
 db = Database()
 
+@app.route('/')
+def entries():
+    
+    return render_template('entries.html', result=db.list_entries(), content_type='application/json')
 
 @app.route('/acquire')
 def acquire():
@@ -46,11 +50,6 @@ def acquire():
     db.create_table(name, ["entry INT NOT NULL AUTO_INCREMENT", "time VARCHAR(255)", "status VARCHAR(255)", "PRIMARY KEY (entry)"])
 
     db.generate_entry(name)
-
-@app.route('/')
-def entries():
-    
-    return render_template('entries.html', result=db.list_entries(), content_type='application/json')
 
 
 
