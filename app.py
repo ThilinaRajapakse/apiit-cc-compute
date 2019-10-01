@@ -30,6 +30,7 @@ class Database:
         sql_query = f"INSERT INTO {plant} (time, status) VALUES ('{time}', '{status}')"
 
         self.cur.execute(sql_query)
+        self.cur.commit()
 
     def list_entries(self):
         self.cur.execute("SELECT * FROM plant_1")
