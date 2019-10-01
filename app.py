@@ -39,7 +39,7 @@ class Database:
             print(sql_query)
 
     def list_entries(self):
-        self.cur.execute("SELECT entry, time, status FROM plant_1")
+        self.cur.execute("SELECT entry, time, status FROM plant_1;")
         result = self.cur.fetchall()
 
         return result
