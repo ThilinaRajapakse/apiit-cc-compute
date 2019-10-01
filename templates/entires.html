@@ -1,0 +1,30 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    </style>
+        <meta charset="UTF-8">
+        <title>Entires</title>
+        {% if result %}
+        
+        {% for row in result %}
+        
+        {% endfor %}
+        {% endif %}
+    <table id="entries" style="width:100%"><tbody><tr>
+            <th>Time</th>
+            <th>Status</th>
+        </tr><tr>
+            <td> {{ row.time }}</td>
+            <td> {{ row.status }}</td>
+    
