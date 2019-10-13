@@ -11,10 +11,11 @@ class Database:
         host = "35.226.208.53"
         user = "root"
         password = "scadmin"
-        db = "sc_electronicsDB"
-        self.con = pymysql.connect(host=host, user=user, password=password, db=db, cursorclass=pymysql.cursors.
+        self.db = "sc_electronicsDB"
+        self.con = pymysql.connect(host=host, user=user, password=password, db=self.db, cursorclass=pymysql.cursors.
                                    DictCursor)
         self.cur = self.con.cursor()
+        self.cur.execute(f"CREATE DATABASE IF NOT EXISTS {self.db}")
 
     def create_table(self, table_name, table_columns):
         sql_query = f"CREATE TABLE IF NOT EXISTS {table_name}"
@@ -42,7 +43,6 @@ db = Database()
 
 @app.route('/')
 def entries():
-    print("Request received")
     return render_template('entries.html', result=db.list_entries(), content_type='application/json')
 
 @app.route('/acquire', methods=['GET', 'POST'])
