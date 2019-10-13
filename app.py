@@ -8,14 +8,13 @@ app = Flask(__name__)
 
 class Database:
     def __init__(self):
-        host = "35.226.208.53"
+        host = "35.224.130.29"
         user = "root"
         password = "scadmin"
         self.db = "sc_electronicsDB"
         self.con = pymysql.connect(host=host, user=user, password=password, db=self.db, cursorclass=pymysql.cursors.
                                    DictCursor)
         self.cur = self.con.cursor()
-        self.cur.execute(f"CREATE DATABASE IF NOT EXISTS {self.db}")
 
     def create_table(self, table_name, table_columns):
         sql_query = f"CREATE TABLE IF NOT EXISTS {table_name}"
@@ -40,6 +39,8 @@ class Database:
         return result
 
 db = Database()
+name = "plant_1"
+db.create_table(name, ["entry INT NOT NULL AUTO_INCREMENT", "time VARCHAR(255)", "status VARCHAR(255)", "PRIMARY KEY (entry)"])
 
 @app.route('/')
 def entries():
@@ -47,9 +48,6 @@ def entries():
 
 @app.route('/acquire', methods=['GET', 'POST'])
 def acquire():
-    name = "plant_1"
-    db.create_table(name, ["entry INT NOT NULL AUTO_INCREMENT", "time VARCHAR(255)", "status VARCHAR(255)", "PRIMARY KEY (entry)"])
-
     db.generate_entry(name)
 
     return redirect('/')
